@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cinematic guide to water collection, purification, recycling, storage, and monitoring in space habitats. ISS Water Recovery System and future concepts.">
+  <title>AETHER · Water Systems | Cycle in Orbit</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="starfield" aria-hidden="true"></div>
+  <canvas id="water-particles" aria-hidden="true"></canvas>
+
+  <!-- HERO -->
+  <header class="hero" id="hero">
+    <div class="parallax-layer earth" aria-hidden="true"></div>
+    <div class="parallax-layer spacecraft-orbit" aria-hidden="true">
+      <svg class="spacecraft" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hull" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#7ec8ff"/>
+            <stop offset="50%" stop-color="#b8e0ff"/>
+            <stop offset="100%" stop-color="#4aa0e0"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <rect x="40" y="40" width="160" height="40" rx="8" fill="url(#hull)" stroke="#00d4ff" stroke-width="1.5" filter="url(#glow)"/>
+        <rect x="70" y="28" width="50" height="18" rx="4" fill="#0a2030" stroke="#00d4ff" stroke-width="1"/>
+        <rect x="130" y="28" width="50" height="18" rx="4" fill="#0a2030" stroke="#00d4ff" stroke-width="1"/>
+        <rect x="10" y="48" width="28" height="24" rx="2" fill="#081828" stroke="#4af" stroke-width="1"/>
+        <rect x="202" y="48" width="28" height="24" rx="2" fill="#081828" stroke="#4af" stroke-width="1"/>
+        <circle cx="85" cy="60" r="5" fill="#00d4ff" opacity="0.9"/>
+        <circle cx="110" cy="60" r="5" fill="#00d4ff" opacity="0.9"/>
+        <circle cx="135" cy="60" r="5" fill="#00d4ff" opacity="0.9"/>
+        <circle cx="160" cy="60" r="5" fill="#00d4ff" opacity="0.9"/>
+        <rect x="200" y="52" width="20" height="16" rx="2" fill="#234" stroke="#00d4ff"/>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <p class="eyebrow">HABITAT WATER SYSTEMS · ORBITAL OPERATIONS</p>
+      <h1 class="title">
+        <span class="line">WATER</span>
+        <span class="line accent">IN THE VOID</span>
+      </h1>
+      <p class="subtitle">How spacecraft collect, purify, recycle, store, and monitor every drop</p>
+      <button class="cta" id="explore-btn">Explore Water Systems</button>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>SCROLL TO BEGIN</span>
+      <div class="chevron"></div>
+    </div>
+  </header>
+
+  <nav class="main-nav" id="main-nav" aria-label="Section navigation">
+    <a href="#sources">Sources</a>
+    <a href="#treatment">Treatment</a>
+    <a href="#storage">Storage & Use</a>
+    <a href="#diagram">System Diagram</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#uses">Drinking & Hygiene</a>
+    <a href="#maintenance">Maintenance</a>
+    <a href="#emergencies">Emergencies</a>
+    <a href="#future">Current vs Future</a>
+  </nav>
+
+  <main>
+    <!-- SOURCES -->
+    <section id="sources" class="scene">
+      <div class="scene-inner">
+        <h2>Where Spacecraft Water Comes From</h2>
+        <p class="lead">On the International Space Station, almost every drop is recycled. Water arrives from Earth in tanks, but daily operations depend on recovering moisture that the crew produces.</p>
+        <div class="cards">
+          <article class="info-card">
+            <h3>Humidity Condensate</h3>
+            <p>Water vapor from breath, sweat, and air is condensed by cooling systems. This “crew latent” water is one of the largest recoverable streams and is collected continuously.</p>
+          </article>
+          <article class="info-card">
+            <h3>Urine & Flush Water</h3>
+            <p>Urine is pretreated with chemicals, then processed. Combined with flush water, this stream is distilled to recover most of its water content before further purification.</p>
+          </article>
+          <article class="info-card">
+            <h3>Hygiene & Other</h3>
+            <p>Water from hand washing, oral hygiene, and limited washing is captured. Sabatier product water (from CO₂ reduction) also feeds the system when available.</p>
+          </article>
+          <article class="info-card">
+            <h3>Earth Resupply</h3>
+            <p>Clean water is still launched in contingency water containers and tanks to top up reserves, replace losses, and provide a reliable backup supply.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TREATMENT -->
+    <section id="treatment" class="scene dark">
+      <div class="scene-inner">
+        <h2>Collection, Filtration & Purification</h2>
+        <p class="lead">The Water Recovery System (WRS) has two main assemblies that turn wastewater into potable water that meets or exceeds Earth drinking-water standards.</p>
+        <div class="two-col">
+          <div class="text-block">
+            <h3>Urine Processor Assembly (UPA)</h3>
+            <p>Pretreated urine is distilled in a rotating centrifuge under vacuum. Water evaporates at lower temperature and is condensed, leaving a concentrated brine. Typical recovery from urine is 70–87% depending on pretreatment.</p>
+            <h3>Brine Processor Assembly (BPA)</h3>
+            <p>The remaining brine is further processed so that warm air evaporates additional water through a special membrane. This step helps push overall system recovery above 98%.</p>
+          </div>
+          <div class="text-block">
+            <h3>Water Processor Assembly (WPA)</h3>
+            <p>Distillate, condensate, and other streams enter the WPA:</p>
+            <ul>
+              <li>Multifiltration beds remove particulates, organics, and ions</li>
+              <li>Catalytic reactor oxidizes remaining organic compounds with heat and oxygen</li>
+              <li>Ion-exchange and polishing steps finish the water</li>
+              <li>Conductivity and other sensors check quality before the water is released to storage</li>
+            </ul>
+            <p>The final product is pure enough for drinking, food preparation, and oxygen generation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORAGE & USE -->
+    <section id="storage" class="scene">
+      <div class="scene-inner">
+        <h2>Storage, Distribution & Reuse</h2>
+        <p class="lead">Clean water is stored in tanks and bags, then distributed through the potable bus to the crew and to systems that need it.</p>
+        <div class="cards">
+          <article class="info-card">
+            <h3>Storage</h3>
+            <p>Product water is held in dedicated tanks and flexible Contingency Water Containers. Reserves are maintained so the habitat can operate for weeks if processing stops.</p>
+          </article>
+          <article class="info-card">
+            <h3>Distribution</h3>
+            <p>Pumps and lines deliver water to dispensers for drinking and food, to the toilet for flush, and to the Oxygen Generation Assembly for electrolysis.</p>
+          </article>
+          <article class="info-card">
+            <h3>Closed Loop</h3>
+            <p>With the Brine Processor operating, the ISS has demonstrated total water recovery of 98–99%. Only a small percentage is lost to leaks, airlock operations, or residual brine.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE DIAGRAM -->
+    <section id="diagram" class="scene dark">
+      <div class="scene-inner">
+        <h2>Water Flow Through the Habitat</h2>
+        <p class="lead">Click or tap any node for details. The loop shows wastewater collection, treatment, quality checks, and clean-water storage.</p>
+        <div class="diagram-container">
+          <svg class="system-svg" viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg">
+            <path class="flow-path" d="M160 160 L300 160" marker-end="url(#arrow)"/>
+            <path class="flow-path" d="M440 160 L580 160" marker-end="url(#arrow)"/>
+            <path class="flow-path" d="M720 160 L720 260 L500 260 L500 300" marker-end="url(#arrow)"/>
+            <path class="flow-path reverse" d="M360 300 L160 300 L160 200" marker-end="url(#arrow)"/>
+            <path class="flow-path" d="M500 300 L320 300 L320 200" marker-end="url(#arrow)"/>
+
+            <g class="node" data-info="waste">
+              <rect x="20" y="120" width="140" height="80" rx="12" class="node-box"/>
+              <text x="90" y="155" text-anchor="middle">Wastewater</text>
+              <text x="90" y="175" text-anchor="middle" class="sub">Urine + Condensate</text>
+            </g>
+            <g class="node" data-info="upa">
+              <rect x="300" y="120" width="140" height="80" rx="12" class="node-box active"/>
+              <text x="370" y="155" text-anchor="middle">UPA / BPA</text>
+              <text x="370" y="175" text-anchor="middle" class="sub">Distillation</text>
+            </g>
+            <g class="node" data-info="wpa">
+              <rect x="580" y="120" width="140" height="80" rx="12" class="node-box"/>
+              <text x="650" y="155" text-anchor="middle">WPA</text>
+              <text x="650" y="175" text-anchor="middle" class="sub">Filtration + Oxidation</text>
+            </g>
+            <g class="node" data-info="storage">
+              <rect x="500" y="280" width="160" height="70" rx="12" class="node-box"/>
+              <text x="580" y="315" text-anchor="middle">Clean Storage</text>
+              <text x="580" y="332" text-anchor="middle" class="sub">Tanks & Bags</text>
+            </g>
+            <g class="node" data-info="use">
+              <rect x="200" y="280" width="160" height="70" rx="12" class="node-box"/>
+              <text x="280" y="315" text-anchor="middle">Crew & Systems</text>
+              <text x="280" y="332" text-anchor="middle" class="sub">Drink · Hygiene · O₂</text>
+            </g>
+
+            <defs>
+              <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="info-panel" id="diagram-info">
+            <h3>Select a system</h3>
+            <p>Click any box to learn how water moves from waste streams to clean storage and back to use.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="scene">
+      <div class="scene-inner">
+        <h2>Water Systems Dashboard</h2>
+        <p class="lead">Simulated live telemetry. Values stay within normal operational ranges for a healthy habitat.</p>
+        <div class="dashboard">
+          <div class="gauge-card">
+            <div class="gauge" data-value="2400" data-max="3500">
+              <span class="gauge-value">2400<span>L</span></span>
+            </div>
+            <h3>Water Reserves</h3>
+            <p>Potable storage on board</p>
+          </div>
+          <div class="gauge-card">
+            <div class="gauge" data-value="4.3" data-max="6">
+              <span class="gauge-value">4.3<span>kg</span></span>
+            </div>
+            <h3>Daily Use / Crew</h3>
+            <p>Drinking, hygiene, systems</p>
+          </div>
+          <div class="gauge-card">
+            <div class="gauge recovery" data-value="98" data-max="100">
+              <span class="gauge-value">98<span>%</span></span>
+            </div>
+            <h3>Recycling Efficiency</h3>
+            <p>With BPA operating</p>
+          </div>
+          <div class="gauge-card">
+            <div class="gauge quality" data-value="99" data-max="100">
+              <span class="gauge-value">99<span>%</span></span>
+            </div>
+            <h3>Water Quality</h3>
+            <p>Meets potable standards</p>
+          </div>
+          <div class="gauge-card wide">
+            <div class="status-bar">
+              <span class="status-dot"></span>
+              <span>System Status: Nominal</span>
+            </div>
+            <p>UPA, WPA, and storage all reporting normal operation</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DRINKING & HYGIENE -->
+    <section id="uses" class="scene dark">
+      <div class="scene-inner">
+        <h2>Drinking Water & Hygiene</h2>
+        <div class="cards">
+          <article class="info-card">
+            <h3>Drinking & Food</h3>
+            <p>Each crew member needs roughly 2 liters of water per day for drinking and food rehydration. Dispensers provide hot and cold water. The recycled product is cleaner than most municipal tap water on Earth.</p>
+          </article>
+          <article class="info-card">
+            <h3>Hygiene</h3>
+            <p>Limited water is used for oral hygiene, hand washing, and body cleaning. Special low-water techniques and wipes help keep total use low while maintaining cleanliness.</p>
+          </article>
+          <article class="info-card">
+            <h3>System Uses</h3>
+            <p>Clean water is also fed to the Oxygen Generation Assembly for electrolysis and used as flush water in the toilet. Every use is designed so the water can be recovered again.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAINTENANCE -->
+    <section id="maintenance" class="scene">
+      <div class="scene-inner">
+        <h2>Equipment Maintenance, Contamination & Leaks</h2>
+        <div class="cards">
+          <article class="info-card">
+            <h3>Routine Maintenance</h3>
+            <p>Astronauts replace multifiltration beds, change filters, clean sensors, and swap Orbital Replacement Units. Many components are designed for on-orbit replacement so the system stays online.</p>
+          </article>
+          <article class="info-card">
+            <h3>Contamination Control</h3>
+            <p>Pretreatment chemicals, filters, and the catalytic reactor prevent microbial growth and remove organics. Continuous conductivity and other sensors detect problems before water is released to the crew.</p>
+          </article>
+          <article class="info-card">
+            <h3>Leak Detection</h3>
+            <p>Pressure and flow sensors watch for leaks in lines and tanks. Small leaks are managed with seals and isolation valves. Larger events trigger contingency procedures and use of stored reserves.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMERGENCIES -->
+    <section id="emergencies" class="scene dark">
+      <div class="scene-inner">
+        <h2>Emergency Reserves & Contingencies</h2>
+        <p class="lead">Multiple independent supplies ensure water is always available even if primary processors fail.</p>
+        <div class="cards">
+          <article class="info-card">
+            <h3>Stored Potable Water</h3>
+            <p>Hundreds to thousands of liters of clean water are kept in tanks and bags. This reserve protects against processor downtime lasting days to weeks.</p>
+          </article>
+          <article class="info-card">
+            <h3>Resupply Capability</h3>
+            <p>Cargo vehicles can deliver additional Contingency Water Containers if needed. Planning accounts for possible delays in resupply.</p>
+          </article>
+          <article class="info-card">
+            <h3>Isolation & Bypass</h3>
+            <p>Valves allow crews to isolate a failed unit and continue using stored water or a backup processor while repairs are made.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURRENT VS FUTURE -->
+    <section id="future" class="scene">
+      <div class="scene-inner">
+        <h2>Current Spacecraft vs Future Concepts</h2>
+        <div class="comparison">
+          <div class="comp-col current">
+            <h3>Current (ISS & Near-Term)</h3>
+            <ul>
+              <li>UPA distillation + BPA brine processing</li>
+              <li>WPA multifiltration and catalytic oxidation</li>
+              <li>98–99% total water recovery demonstrated</li>
+              <li>Regular filter and ORU replacement by crew</li>
+              <li>Earth resupply of water and spare parts still required</li>
+              <li>Conductivity and sensor-based quality checks</li>
+            </ul>
+          </div>
+          <div class="comp-col future">
+            <h3>Future Concepts</h3>
+            <ul>
+              <li>Higher reliability and longer-life components</li>
+              <li>Reduced crew maintenance time</li>
+              <li>Membrane and reverse-osmosis improvements</li>
+              <li>In-situ resource utilization (lunar or Martian ice)</li>
+              <li>More closed-loop systems for deep-space transit</li>
+              <li>Still based on physical and chemical processes — no dependence on growing crops</li>
+            </ul>
+          </div>
+        </div>
+        <p class="note">Future habitats will aim for even higher recovery and lower resupply mass while keeping robust emergency reserves and clear water-quality monitoring.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>AETHER Water Systems · Educational visualization of spacecraft water recycling</p>
+    <p class="small">Based on publicly documented ISS Water Recovery System architecture and published research. Not an official NASA product.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
